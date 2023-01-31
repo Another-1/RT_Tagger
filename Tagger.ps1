@@ -2,7 +2,7 @@ $client = @{
     IP       = '192.168.0.50'
     Port     = '8080'
     login    = 'admin'
-    password = 'mainstreet'
+    password = 'admin'
 }
 $label = 'Личное'
 
