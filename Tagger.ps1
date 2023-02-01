@@ -69,7 +69,7 @@ foreach ( $torrent in $torrents_list) {
 $EndTime = (Get-Date)
 $TotalTime = $EndTime-$StartTime
 Write-Host ''
-Write-Host 'Время выполнения: ' $TotalTime.ToString()
+Write-Host 'Время выполнения:' $TotalTime.ToString()
 If ( $ids.count -ne 0 ) {
     Write-Host ''
     Write-Host 'Не найдено в клиенте:'
