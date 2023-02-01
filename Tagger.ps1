@@ -7,9 +7,22 @@ $client = @{
 $label = 'Личное'
 $list_path = 'C:\Temp\1.txt'
 
+# Add-Type -AssemblyName System.Windows.Forms
+# $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
+# $OpenFileDialog.InitialDirectory = $PSScriptRoot
+# $OpenFileDialog.Title = "Файл со списком ID"
+# $OpenFileDialog.filter = “TXT files| *.txt”
+# If ($OpenFileDialog.ShowDialog() -eq "Cancel") {
+#     [System.Windows.Forms.MessageBox]::Show("Вы ничего не выбрали!", "Error", 0, 
+#         [System.Windows.Forms.MessageBoxIcon]::Exclamation)
+#     exit
+# }
+# $list_path = OpenFileDialog.FileName
+
+$StartTime = (Get-Date)
 $ids = Get-Content -Path $list_path
 If ( $ids.count -eq 0 ) {
-    Write-Host 'В файле не найлено ID, выходим'
+    Write-Host 'В файле не найдено ID, выходим'
     Exit
 }
 Write-Host ( 'В файле найдено ' + $ids.count + ' ID' )
@@ -51,4 +64,15 @@ foreach ( $torrent in $torrents_list) {
             Exit
         }
     }
+}
+
+$EndTime = (Get-Date)
+$TotalTime = $EndTime-$StartTime
+Write-Host ''
+Write-Host 'Время выполнения: ' $TotalTime.ToString()
+If ( $ids.count -ne 0 ) {
+    Write-Host ''
+    Write-Host 'Не найдено в клиенте:'
+    Write-Host $ids
+    Write-Host ''
 }
