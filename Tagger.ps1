@@ -61,7 +61,7 @@ foreach ( $torrent in $torrents_list) {
         $ids = $ids | Where-Object { $_ -ne $cl_id }
         if ( $ids.count -eq 0 ) {
             Write-Host 'Вроде, всё'
-            Exit
+            break
         }
     }
 }
