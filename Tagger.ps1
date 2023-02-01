@@ -5,18 +5,9 @@ $client = @{
     password = 'admin'
 }
 $label = 'Личное'
+$list_path = 'C:\Temp\1.txt'
 
-Add-Type -AssemblyName System.Windows.Forms
-$OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
-$OpenFileDialog.InitialDirectory = $PSScriptRoot
-$OpenFileDialog.Title = "Файл со списком ID"
-$OpenFileDialog.filter = “TXT files| *.txt”
-If ($OpenFileDialog.ShowDialog() -eq "Cancel") {
-    [System.Windows.Forms.MessageBox]::Show("Вы ничего не выбрали!", "Error", 0, 
-        [System.Windows.Forms.MessageBoxIcon]::Exclamation)
-    exit
-}
-$ids = Get-Content -Path $OpenFileDialog.FileName
+$ids = Get-Content -Path $list_path
 If ( $ids.count -eq 0 ) {
     Write-Host 'В файле не найлено ID, выходим'
     Exit
